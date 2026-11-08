@@ -30,14 +30,24 @@ type batteryReading struct {
 }
 
 func (reading batteryReading) estimatedRuntime() string {
-	if reading.currentAmps > 0 {
-		return "Charging"
-	}
-	if reading.currentAmps == 0 || reading.remainingCapacityAh <= 0 {
+	if reading.currentAmps == 0 {
 		return "N/A"
 	}
 
-	minutes := int(math.Round(reading.remainingCapacityAh / math.Abs(reading.currentAmps) * 60))
+	capacityToUse := reading.remainingCapacityAh
+	if reading.currentAmps > 0 {
+		if reading.capacityAh <= 0 {
+			return "N/A"
+		}
+		capacityToUse = reading.capacityAh - reading.remainingCapacityAh
+		if capacityToUse <= 0 {
+			return "0h 00m"
+		}
+	} else if capacityToUse <= 0 {
+		return "N/A"
+	}
+
+	minutes := int(math.Round(capacityToUse / math.Abs(reading.currentAmps) * 60))
 	return fmt.Sprintf("%dh %02dm", minutes/60, minutes%60)
 }
 

@@ -60,9 +60,9 @@ Choose **Quit** from the tray menu to disconnect and exit.
 - **Rem. Cap. (Ah)** is the remaining capacity reported by the BMS.
 - **Capacity (Ah)** is the configured capacity reported in the main-page data.
 - **Estimated runtime** is remaining Ah divided by the absolute current in
-  amps, rounded to the nearest minute. It is an approximate discharge estimate;
-  it shows `Charging` while current is positive and `N/A` when current is zero
-  or remaining capacity is unavailable.
+  amps while discharging, or the capacity gap divided by current while
+  charging, rounded to the nearest minute. It shows `N/A` when current is zero
+  or the capacity needed for the estimate is unavailable.
 
 The program uses the BlueZ system D-Bus to discover and connect to the BMS. It
 does not request or send the Android app's password. The BMS must be reachable

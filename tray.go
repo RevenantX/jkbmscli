@@ -46,7 +46,7 @@ func updateTray(reading batteryReading) {
 
 func formatTrayTooltip(reading batteryReading) string {
 	return fmt.Sprintf(
-		"JK-BMS\nCharge: %d%%\nCurrent (A): %+.1f\nPower (W): %.1f\nRem. Cap. (Ah): %.1f\nCapacity (Ah): %.1f\nEstimated runtime: %s",
+		"JK-BMS\nCharge: %d%%\nCurrent (A): %+.1f\nPower (W): %.1f\nRem. Cap. (Ah): %.1f\nCapacity (Ah): %.1f\nEstimated time to full/empty: %s",
 		reading.stateOfCharge,
 		reading.currentAmps,
 		reading.powerWatts,

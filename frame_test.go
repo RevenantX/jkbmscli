@@ -129,8 +129,18 @@ func TestEstimatedRuntime(t *testing.T) {
 		},
 		{
 			name:    "charging",
+			reading: batteryReading{remainingCapacityAh: 18.5, capacityAh: 100, currentAmps: 7.5},
+			want:    "10h 52m",
+		},
+		{
+			name:    "charging with unknown capacity",
 			reading: batteryReading{remainingCapacityAh: 18.5, currentAmps: 7.5},
-			want:    "Charging",
+			want:    "N/A",
+		},
+		{
+			name:    "fully charged",
+			reading: batteryReading{remainingCapacityAh: 100, capacityAh: 100, currentAmps: 7.5},
+			want:    "0h 00m",
 		},
 		{
 			name:    "idle",
